@@ -9,15 +9,26 @@ import { DB } from '@/api/database/db'
 import { registry } from '@/api/spec/registry'
 import { makeHandlers } from '@/api/utils/express-types'
 
-const userSchema = z.object({
-  // manual layer to decouple DB schema from
-  // application interface
-  id: z.string(),
-  firstName: z.string(),
-  lastName: z.string().nullable(),
-  gender: z.string(),
-  createdAt: z.date(),
-})
+const userSchema = z
+  .object({
+    // manual layer to decouple DB schema from
+    // application interface
+    id: z.string().uuid(),
+    firstName: z.string(),
+    lastName: z.string().nullable(),
+    gender: z.string(),
+    createdAt: z.date(),
+  })
+  .openapi({
+    example: {
+      id: 'f4853b42-8aa8-48ce-83b2-390bbe230cd0',
+      firstName: 'John',
+      lastName: 'Doe',
+      gender: 'male',
+      createdAt: new Date('2023-08-04 19:33:00.636659+00'),
+    },
+  })
+
 type userSchema = z.infer<typeof userSchema>
 
 // Person to Response
@@ -94,7 +105,13 @@ export class UsersController {
   }
 
   static createUser = {
-    body: userSchema.omit({ id: true, createdAt: true }),
+    body: userSchema.omit({ id: true, createdAt: true }).openapi({
+      example: {
+        firstName: 'John',
+        lastName: 'Doe',
+        gender: 'male',
+      },
+    }),
     response: userSchema,
     handler() {
       const handlers = makeHandlers(

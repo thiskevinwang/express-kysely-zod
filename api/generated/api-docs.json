@@ -62,7 +62,14 @@
                     "lastName",
                     "gender",
                     "createdAt"
-                  ]
+                  ],
+                  "example": {
+                    "createdAt": "2023-08-04T20:34:04.585Z",
+                    "firstName": "Kevin",
+                    "lastName": "Wang",
+                    "gender": "male",
+                    "id": "4e069960-11cb-4a64-b0be-b6b86a5e84d5"
+                  }
                 }
               }
             }
@@ -85,7 +92,12 @@
                   "lastName": { "type": ["string", "null"] },
                   "gender": { "type": "string" }
                 },
-                "required": ["firstName", "lastName", "gender"]
+                "required": ["firstName", "lastName", "gender"],
+                "example": {
+                  "firstName": "Kevin",
+                  "lastName": "Wang",
+                  "gender": "male"
+                }
               }
             }
           }
@@ -110,7 +122,14 @@
                     "lastName",
                     "gender",
                     "createdAt"
-                  ]
+                  ],
+                  "example": {
+                    "createdAt": "2023-08-04T20:34:04.585Z",
+                    "firstName": "Kevin",
+                    "lastName": "Wang",
+                    "gender": "male",
+                    "id": "4e069960-11cb-4a64-b0be-b6b86a5e84d5"
+                  }
                 }
               }
             }
@@ -152,7 +171,14 @@
                     "lastName",
                     "gender",
                     "createdAt"
-                  ]
+                  ],
+                  "example": {
+                    "createdAt": "2023-08-04T20:34:04.585Z",
+                    "firstName": "Kevin",
+                    "lastName": "Wang",
+                    "gender": "male",
+                    "id": "4e069960-11cb-4a64-b0be-b6b86a5e84d5"
+                  }
                 }
               }
             }
