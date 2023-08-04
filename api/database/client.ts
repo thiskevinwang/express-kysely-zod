@@ -2,7 +2,7 @@ import { config } from 'dotenv'
 import { Kysely, PostgresDialect } from 'kysely'
 import { Pool } from 'pg'
 
-import { Database } from '@/api/types'
+import { DB } from './db'
 
 config()
 
@@ -19,10 +19,6 @@ const dialect = new PostgresDialect({
   }),
 })
 
-// Database interface is passed to Kysely's constructor, and from now on, Kysely
-// knows your database structure.
-// Dialect is passed to Kysely's constructor, and from now on, Kysely knows how
-// to communicate with your database.
-export const db = new Kysely<Database>({
+export const db = new Kysely<DB>({
   dialect,
 })

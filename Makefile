@@ -1,6 +1,9 @@
 start:
 	docker compose up --build --abort-on-container-exit
 
+db-only:
+	docker compose up db
+
 stop:
 	docker compose down
 
