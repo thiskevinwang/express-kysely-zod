@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser'
 import { config } from 'dotenv'
 import express from 'express'
 
@@ -6,10 +7,12 @@ import rootRouter from '@/api/routes/root.ts'
 import streamRouter from '@/api/routes/stream.ts'
 import usersRouter from '@/api/routes/users/route.ts'
 
-//sad
 config()
 
 const app = express()
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.use(rootRouter)
 app.use(streamRouter)

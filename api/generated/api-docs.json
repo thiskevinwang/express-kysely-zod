@@ -48,18 +48,69 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "user": {
-                        "type": "object",
-                        "properties": { "id": { "type": "string" } },
-                        "required": ["id"]
-                      }
-                    },
-                    "required": ["user"]
-                  }
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "firstName": { "type": "string" },
+                    "lastName": { "type": ["string", "null"] },
+                    "gender": { "type": "string" },
+                    "createdAt": { "type": "string" }
+                  },
+                  "required": [
+                    "id",
+                    "firstName",
+                    "lastName",
+                    "gender",
+                    "createdAt"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createUser",
+        "tags": ["Users"],
+        "description": "Create a new user",
+        "summary": "Create a new user",
+        "requestBody": {
+          "description": "Payload for creating a new user.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": { "type": "string" },
+                  "lastName": { "type": ["string", "null"] },
+                  "gender": { "type": "string" }
+                },
+                "required": ["firstName", "lastName", "gender"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Object with user data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "firstName": { "type": "string" },
+                    "lastName": { "type": ["string", "null"] },
+                    "gender": { "type": "string" },
+                    "createdAt": { "type": "string" }
+                  },
+                  "required": [
+                    "id",
+                    "firstName",
+                    "lastName",
+                    "gender",
+                    "createdAt"
+                  ]
                 }
               }
             }
@@ -87,18 +138,21 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "user": {
-                        "type": "object",
-                        "properties": { "id": { "type": "string" } },
-                        "required": ["id"]
-                      }
-                    },
-                    "required": ["user"]
-                  }
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "firstName": { "type": "string" },
+                    "lastName": { "type": ["string", "null"] },
+                    "gender": { "type": "string" },
+                    "createdAt": { "type": "string" }
+                  },
+                  "required": [
+                    "id",
+                    "firstName",
+                    "lastName",
+                    "gender",
+                    "createdAt"
+                  ]
                 }
               }
             }

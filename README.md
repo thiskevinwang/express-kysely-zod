@@ -4,6 +4,8 @@
 # clone
 cp .env.example .env
 npm i
+npm run migrate && npm run db
+make db-only
 npm run dev
 # watch for changes
 # Ctrl+c to exit
