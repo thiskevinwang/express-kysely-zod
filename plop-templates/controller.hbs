@@ -10,7 +10,7 @@ import { registry } from '@/api/spec/registry'
 import { makeHandlers } from '@/api/utils/express-types'
 
 throw 'fix these fields and delete me'
-const {{ name }}Schema = z
+const {{ camelCase name }}Schema = z
   .object({
     id: z.string().uuid(),
     firstName: z.string(),
@@ -28,22 +28,22 @@ const {{ name }}Schema = z
     },
   })
 
-type {{ name }}Schema = z.infer<typeof {{ name }}Schema>
+type {{ camelCase name }}Schema = z.infer<typeof {{ camelCase name }}Schema>
 
 throw 'fix these fields and delete me'
 // this is a manual mapping from DB schema to application interface
-const personToResponse = (person: Selectable<DB['persons']>): userSchema => {
+const personToResponse = (person: Selectable<DB['persons']>): {{ camelCase name }}Schema => {
   const response = {
     id: person.id,
     firstName: person.first_name,
     lastName: person.last_name,
     gender: person.gender,
     createdAt: person.created_at,
-  } satisfies {{ name }}Schema
+  } satisfies {{ camelCase name }}Schema
   return response
 }
 
-export class {{ properCase name }}Controller {
+export class {{ properCase name }}sController {
   // For ApiDocs
   static spec: {
     tag: TagObject
@@ -56,7 +56,7 @@ export class {{ properCase name }}Controller {
 
   static get{{ properCase name }}s = {
     params: undefined,
-    response: z.array(userSchema),
+    response: z.array({{ camelCase name }}Schema),
     handler() {
       const handlers = makeHandlers(null, async (req, res) => {
         throw 'fix this query and delete me'
@@ -64,9 +64,9 @@ export class {{ properCase name }}Controller {
         // query the DB
         const users = await db.selectFrom('persons').selectAll().execute()
         // manually map DB schema to application interface
-        const mappedUsers = users.map((user) => personToResponse(user))
+        const mapped = users.map((user) => personToResponse(user))
         const parseResult =
-          UsersController.getUsers.response.safeParse(mappedUsers)
+          {{ properCase name }}sController.get{{ properCase name }}s.response.safeParse(mapped)
 
         if (!parseResult.success) {
           res.status(500).json({
@@ -85,14 +85,15 @@ export class {{ properCase name }}Controller {
   static get{{ properCase name }} = {
     params: z
       .object({
+        // FIXME!
         user_id: z.string().uuid(),
       })
       .openapi({ example: { user_id: '9d65dd84-6fa2-4732-9916-20153a7c4348' } }),
-    response: {{ name }}Schema,
+    response: {{ camelCase name }}Schema,
     handler() {
       const handlers = makeHandlers(
         validateRequest({
-          params: {{ properCase name }}Controller.get{{ properCase name }}.params,
+          params: {{ properCase name }}sController.get{{ properCase name }}.params,
         }),
         (req, res) => {
           res.json({
@@ -107,14 +108,14 @@ export class {{ properCase name }}Controller {
   }
 
   static create{{ properCase name }} = {
-    body: e{{ name }}Schema.omit({ id: true, createdAt: true }).openapi({
+    body: {{ camelCase name }}Schema.omit({ id: true, createdAt: true }).openapi({
       example: {
         firstName: 'John',
         lastName: 'Doe',
         gender: 'male',
       },
     }),
-    response: {{ name }}Schema,
+    response: {{ camelCase name }}Schema,
     handler() {
       const handlers = makeHandlers(
         validateRequest({
