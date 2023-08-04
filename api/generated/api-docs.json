@@ -1,0 +1,111 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "0.0.0",
+    "title": "TEST API",
+    "description": "\n\n# Introduction\n...\n\n# Authentication\n\nThere are two notable forms of authentication:\n  - GitHub Token\n  - Admin Token\n\n<SecurityDefinitions />\n"
+  },
+  "servers": [{ "url": "http://localhost:5000", "description": "development" }],
+  "tags": [
+    { "name": "Users", "description": "Operations about users" },
+    { "name": "Stream", "description": "Operations for testing streaming data" }
+  ],
+  "components": { "schemas": {}, "parameters": {} },
+  "paths": {
+    "/stream": {
+      "get": {
+        "operationId": "getStream",
+        "tags": ["Stream"],
+        "summary": "Stream data",
+        "description": "Stream",
+        "parameters": [
+          {
+            "schema": { "type": "number", "minimum": 0, "maximum": 100 },
+            "required": false,
+            "name": "delay",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A stream of data",
+            "content": {
+              "text/html; charset=UTF-8": { "schema": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "operationId": "getUsers",
+        "tags": ["Users"],
+        "summary": "Get all users",
+        "description": "Get all users",
+        "responses": {
+          "200": {
+            "description": "Array of users.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "user": {
+                        "type": "object",
+                        "properties": { "id": { "type": "string" } },
+                        "required": ["id"]
+                      }
+                    },
+                    "required": ["user"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "operationId": "getUser",
+        "tags": ["Users"],
+        "description": "Get user data by its id",
+        "summary": "Get a single user",
+        "parameters": [
+          {
+            "schema": { "type": "string" },
+            "required": true,
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object with user data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "user": {
+                        "type": "object",
+                        "properties": { "id": { "type": "string" } },
+                        "required": ["id"]
+                      }
+                    },
+                    "required": ["user"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "webhooks": {}
+}
