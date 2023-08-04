@@ -8,7 +8,8 @@
     "docs": "node --loader ts-node/esm ./api/spec/index.ts",
     "dev": "nodemon -e ts --exec 'npm run docs && npm run start'",
     "migrate": "node --loader ts-node/esm ./cmd/migrate.ts",
-    "db": "kysely-codegen --dialect=postgres  --out-file=./api/database/db.d.ts"
+    "db": "kysely-codegen --dialect=postgres  --out-file=./api/database/db.d.ts",
+    "plop": "plop"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +33,7 @@
     "@types/pg": "^8.10.2",
     "kysely-codegen": "^0.10.1",
     "nodemon": "^3.0.1",
+    "plop": "^3.1.2",
     "prettier": "^3.0.0",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.6"
