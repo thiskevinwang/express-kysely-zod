@@ -2,8 +2,6 @@
  * @param {import('plop').NodePlopAPI} plop
  */
 export default function (plop) {
-  // create your generators here
-  // controller generator
   plop.setGenerator('controller', {
     description: 'application controller logic',
     prompts: [
@@ -26,6 +24,28 @@ export default function (plop) {
         type: 'add',
         path: 'api/controllers/{{name}}.controller.ts',
         templateFile: 'plop-templates/controller.hbs',
+      },
+    ],
+  })
+
+  plop.setGenerator('migration', {
+    description: 'date-named database migration',
+    prompts: [
+      {
+        type: 'input',
+        name: 'date',
+        message: "Use today's date? (Y/n)",
+        default: new Date().toISOString(),
+        transform: (value) => {
+          return new Date().toISOString()
+        },
+      },
+    ],
+    actions: [
+      {
+        type: 'add',
+        path: 'cmd/migrations/{{date}}.ts',
+        templateFile: 'plop-templates/migration.hbs',
       },
     ],
   })
