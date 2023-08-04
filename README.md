@@ -24,6 +24,7 @@ This is a scaffolding project built around `express.js` that aims to address a f
 - [x] Use `nodemon` for hot-reloading
   - [ ] with `docker compose`
   - [x] with `node`
+- [ ] Generators with `plop`
 - [ ] Database migrations
 - [x] TypeScript support
 - [ ] Testing
