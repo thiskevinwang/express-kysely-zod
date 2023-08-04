@@ -1,4 +1,4 @@
-# Express w/ Zod Validation & OpenAPI generation
+# Express + Zod validation, OpenAPI generation, Kysely client
 
 ```bash
 # clone
