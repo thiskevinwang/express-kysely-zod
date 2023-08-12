@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "plop": "plop"
+    "plop": "plop",
+    "gen:db": "npm run gen:db -w 'apps/api' 'cmd/shared'"
   },
   "keywords": [],
   "author": "",

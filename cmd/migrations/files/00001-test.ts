@@ -15,7 +15,7 @@ export async function up(db: Kysely<any>): Promise<void> {
   CREATE TABLE users (
     id         TEXT         PRIMARY KEY DEFAULT uuid_with_prefix('user'),
     CONSTRAINT valid_prefixed_uuid_format CHECK (id ~ '^user_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'),
-    email      VARCHAR(50)  NOT NULL,
+    email      VARCHAR(50)  UNIQUE NOT NULL,
 
     created_at TIMESTAMPTZ  NOT NULL DEFAULT NOW()
   );

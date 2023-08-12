@@ -2,7 +2,6 @@ import { config } from 'dotenv'
 import { Kysely, PostgresDialect } from 'kysely'
 import { Pool } from 'pg'
 
-// @ts-ignore - this is a generated file and is expected to cause a type error if not generated yet
 import { DB } from '../generated/db'
 
 config()

@@ -4,7 +4,7 @@
     "start": "node --loader ts-node/esm ./server.ts",
     "docs": "node --loader ts-node/esm ./spec/index.ts",
     "dev": "nodemon -e ts --exec 'npm run docs && npm run start'",
-    "db": "kysely-codegen --dialect=postgres  --out-file=./generated/db.d.ts",
+    "gen:db": "kysely-codegen --dialect=postgres  --out-file=./generated/db.d.ts",
     "plop": "plop"
   },
   "dependencies": {

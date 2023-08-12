@@ -2,8 +2,7 @@ import { promises as fs } from 'fs'
 import * as path from 'path'
 
 import { FileMigrationProvider, Migrator, NO_MIGRATIONS } from 'kysely'
-
-import { db } from './database/client'
+import { db } from '~shared/database/client'
 
 async function migrateToLatest() {
   const migrationsFolder = path.join(__dirname, 'files')

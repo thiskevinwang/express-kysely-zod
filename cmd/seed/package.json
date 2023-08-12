@@ -1,0 +1,9 @@
+{
+  "name": "seed",
+  "scripts": {
+    "seed": "node --loader ts-node/esm ./seed.ts"
+  },
+  "dependencies": {
+    "~shared": "*"
+  }
+}
