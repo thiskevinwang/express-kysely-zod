@@ -1,10 +1,16 @@
+import * as path from 'path'
+
 import { config } from 'dotenv'
 import { Kysely, PostgresDialect } from 'kysely'
 import { Pool } from 'pg'
 
-import { DB } from './db'
-
-config()
+config({
+  // note: this relative path creation is a bit tedious helps
+  // avoid having a nested `.env` file, and leveraging a root
+  // `.env` file instead
+  path: path.join(__dirname, '../../..', '.env'),
+  debug: true,
+})
 
 const dialect = new PostgresDialect({
   pool: new Pool({
@@ -19,6 +25,6 @@ const dialect = new PostgresDialect({
   }),
 })
 
-export const db = new Kysely<DB>({
+export const db = new Kysely({
   dialect,
 })

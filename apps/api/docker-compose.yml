@@ -1,7 +1,6 @@
 version: '3'
 services:
   db:
-    container_name: db
     restart: always
     image: postgres:15-alpine3.17
     environment:
@@ -11,13 +10,12 @@ services:
     ports:
       - '${POSTGRES_PORT}:5432'
   app:
-    container_name: app
     build:
       context: .
       dockerfile: Dockerfile
     image: app
-    volumes: # for hot reloading w/ npm run dev
-      - .:/app
+    # volumes: # for hot reloading w/ npm run dev
+    # - .:/app
     command: ['npm', 'run', 'start']
     environment:
       - POSTGRES_DB

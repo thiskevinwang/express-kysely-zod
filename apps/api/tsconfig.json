@@ -1,0 +1,24 @@
+{
+  "ts-node": {
+    // Do not forget to `npm i -D tsconfig-paths`
+    "require": ["tsconfig-paths/register"] // enables `ts-node` to resolve `@/*` alias paths
+  },
+  "compilerOptions": {
+    "lib": ["ES2021"], // enables `String.replaceAll()`
+    "target": "es5",
+    "module": "commonjs",
+    "allowJs": true,
+    "paths": {
+      // This makes aliases relative to this folder, so imports
+      // will look like "@/controllers", "@/utils", etc.
+      "@/*": ["./*"]
+    },
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true
+  },
+  "exclude": ["node_modules"],
+  "include": ["./**/*.ts"]
+}

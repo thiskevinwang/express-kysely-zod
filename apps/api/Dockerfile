@@ -3,7 +3,7 @@ FROM --platform=linux/amd64 node:18-alpine3.17 AS deps
 WORKDIR /app
 
 COPY package.json ./
-COPY package-lock.json ./
+# COPY package-lock.json ./
 
 RUN npm i
 
@@ -16,8 +16,14 @@ COPY --from=deps /app/package-lock.json ./
 COPY --from=deps /app/node_modules/ ./node_modules/
 
 COPY .env ./
-COPY api/ ./api/
-COPY tsconfig.json ./
+COPY controllers/ ./controllers/
+COPY database/ ./database/
+COPY generated/ ./generated/
+COPY routes/ ./routes/
+COPY spec/ ./spec/
+COPY utils/ ./utils/
+COPY server.ts ./server.ts
+COPY tsconfig.json ./tsconfig.json
 
 EXPOSE $PORT
 

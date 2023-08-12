@@ -4,8 +4,8 @@ import * as path from 'path'
 import { OpenApiGeneratorV31 } from '@asteasolutions/zod-to-openapi'
 import * as prettier from 'prettier'
 
-import { StreamController } from '@/api/controllers/stream.controller'
-import { UsersController } from '@/api/controllers/users.controller'
+import { StreamController } from '@/controllers/stream.controller'
+import { UsersController } from '@/controllers/users.controller'
 
 import { registry } from './registry'
 
@@ -48,7 +48,7 @@ There are two notable forms of authentication:
       return val.replace(':', '{').replaceAll('-', '_') + '}'
     })
   fs.writeFileSync(
-    './api/generated/api-docs.json',
+    './generated/api-docs.json',
     await prettier.format(jsonBlob, { parser: 'json' })
   )
 }

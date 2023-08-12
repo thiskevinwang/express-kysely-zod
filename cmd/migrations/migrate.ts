@@ -3,10 +3,10 @@ import * as path from 'path'
 
 import { FileMigrationProvider, Migrator, NO_MIGRATIONS } from 'kysely'
 
-import { db } from '@/api/database/client'
+import { db } from './database/client'
 
 async function migrateToLatest() {
-  const migrationsFolder = path.join(__dirname, 'migrations')
+  const migrationsFolder = path.join(__dirname, 'files')
 
   const migrator = new Migrator({
     db,

@@ -50,26 +50,14 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": { "type": "string" },
-                    "firstName": { "type": "string" },
-                    "lastName": { "type": ["string", "null"] },
-                    "gender": { "type": "string" },
+                    "id": {
+                      "type": "string",
+                      "pattern": "^user_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                    },
+                    "email": { "type": "string", "format": "email" },
                     "createdAt": { "type": "string" }
                   },
-                  "required": [
-                    "id",
-                    "firstName",
-                    "lastName",
-                    "gender",
-                    "createdAt"
-                  ],
-                  "example": {
-                    "createdAt": "2023-08-04T20:34:04.585Z",
-                    "firstName": "Kevin",
-                    "lastName": "Wang",
-                    "gender": "male",
-                    "id": "4e069960-11cb-4a64-b0be-b6b86a5e84d5"
-                  }
+                  "required": ["id", "email", "createdAt"]
                 }
               }
             }
@@ -88,16 +76,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "firstName": { "type": "string" },
-                  "lastName": { "type": ["string", "null"] },
-                  "gender": { "type": "string" }
+                  "email": { "type": "string", "format": "email" }
                 },
-                "required": ["firstName", "lastName", "gender"],
-                "example": {
-                  "firstName": "Kevin",
-                  "lastName": "Wang",
-                  "gender": "male"
-                }
+                "required": ["email"]
               }
             }
           }
@@ -110,26 +91,14 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": { "type": "string" },
-                    "firstName": { "type": "string" },
-                    "lastName": { "type": ["string", "null"] },
-                    "gender": { "type": "string" },
+                    "id": {
+                      "type": "string",
+                      "pattern": "^user_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                    },
+                    "email": { "type": "string", "format": "email" },
                     "createdAt": { "type": "string" }
                   },
-                  "required": [
-                    "id",
-                    "firstName",
-                    "lastName",
-                    "gender",
-                    "createdAt"
-                  ],
-                  "example": {
-                    "createdAt": "2023-08-04T20:34:04.585Z",
-                    "firstName": "Kevin",
-                    "lastName": "Wang",
-                    "gender": "male",
-                    "id": "4e069960-11cb-4a64-b0be-b6b86a5e84d5"
-                  }
+                  "required": ["id", "email", "createdAt"]
                 }
               }
             }
@@ -159,26 +128,14 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": { "type": "string" },
-                    "firstName": { "type": "string" },
-                    "lastName": { "type": ["string", "null"] },
-                    "gender": { "type": "string" },
+                    "id": {
+                      "type": "string",
+                      "pattern": "^user_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                    },
+                    "email": { "type": "string", "format": "email" },
                     "createdAt": { "type": "string" }
                   },
-                  "required": [
-                    "id",
-                    "firstName",
-                    "lastName",
-                    "gender",
-                    "createdAt"
-                  ],
-                  "example": {
-                    "createdAt": "2023-08-04T20:34:04.585Z",
-                    "firstName": "Kevin",
-                    "lastName": "Wang",
-                    "gender": "male",
-                    "id": "4e069960-11cb-4a64-b0be-b6b86a5e84d5"
-                  }
+                  "required": ["id", "email", "createdAt"]
                 }
               }
             }

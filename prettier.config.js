@@ -5,7 +5,6 @@ module.exports = {
   tabWidth: 2,
   semi: false,
   singleQuote: true,
-  //
   importOrder: [
     // node stdlib
     '^(path|fs|child_process)$',

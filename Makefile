@@ -1,13 +1,14 @@
-start:
-	docker compose up --build --abort-on-container-exit
+app.start:
+	docker compose -f apps/api/docker-compose.yml up --build --abort-on-container-exit
 
-db-only:
-	docker compose up db
 
-stop:
-	docker compose down
+app.db-only:
+	docker compose -f apps/api/docker-compose.yml up db
 
-PHONY: start stop
+app.stop:
+	docker compose -f apps/api/docker-compose.yml down
+
+PHONY: app.start app.db-only app.stop
 
 # todo: command for generating migration files with ISO 8601 prefix
 date:

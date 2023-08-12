@@ -5,7 +5,7 @@ const router = Router()
 
 // serve your swagger.json file
 router.get('/api-docs/spec.json', (req, res) => {
-  res.sendFile('api/generated/api-docs.json', { root: '.' })
+  res.sendFile('generated/api-docs.json', { root: '.' })
 })
 
 router.get(

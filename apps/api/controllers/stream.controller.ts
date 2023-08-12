@@ -3,8 +3,8 @@ import type { TagObject } from 'openapi3-ts/oas31'
 import { z } from 'zod'
 import { validateRequest } from 'zod-express-middleware'
 
-import { registry } from '@/api/spec/registry'
-import { makeHandlers } from '@/api/utils/express-types'
+import { registry } from '@/spec/registry'
+import { makeHandlers } from '@/utils/express-types'
 
 export class StreamController {
   // For ApiDocs
