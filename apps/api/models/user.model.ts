@@ -8,15 +8,11 @@ const RX = /^user_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
 
 /** schema from the database */ type UserDBSchema = Selectable<DB['users']>
 
-// Export this for consumer-to-app validation middleware
-export const UserAppSchema = z.object({
-  id: z.string().regex(RX),
-  email: z.string().email(),
-  createdAt: z.date(),
-})
-/** schema for the application */ type UserAppSchema = z.infer<
-  typeof UserAppSchema
->
+/** schema for the application */ type UserAppSchema = {
+  id: string
+  email: string
+  createdAt: Date
+}
 
 // See "ZodType with ZodEffects" to get a sense of the verbose schemas in this file.
 // https://github.com/colinhacks/zod#zodtype-with-zodeffects
@@ -33,28 +29,24 @@ const UserDbToAppSchema: z.ZodType<UserAppSchema, z.ZodTypeDef, UserDBSchema> =
       email: user.email,
       createdAt: user.created_at,
     }))
-    /*optional openapi docs gen */ .openapi({
-      example: {
-        id: 'user_f4853b42-8aa8-48ce-83b2-390bbe230cd0',
-        email: 'hello@poopy.face',
-        createdAt: new Date('2023-08-12 15:51:19.659247+00'),
-      },
-    })
 type UserDbToAppSchema = z.infer<typeof UserDbToAppSchema>
 
 // opposite of UserDbToAppSchema
-const UserAppToDbSchema: z.ZodType<UserDBSchema, z.ZodTypeDef, UserAppSchema> =
-  z
-    /*from app*/ .object({
-      id: z.string().regex(RX),
-      email: z.string(),
-      createdAt: z.date(),
-    })
-    /*to db*/ .transform((user) => ({
-      id: user.id,
-      email: user.email,
-      created_at: user.createdAt,
-    }))
+export const UserAppToDbSchema: z.ZodType<
+  UserDBSchema,
+  z.ZodTypeDef,
+  UserAppSchema
+> = z
+  /*from app*/ .object({
+    id: z.string().regex(RX),
+    email: z.string().email(),
+    createdAt: z.date(),
+  })
+  /*to db*/ .transform((user) => ({
+    id: user.id,
+    email: user.email,
+    created_at: user.createdAt,
+  }))
 type UserAppToDbSchema = z.infer<typeof UserAppToDbSchema>
 
 // A class to abstract away the db-and-app schema transformation logic

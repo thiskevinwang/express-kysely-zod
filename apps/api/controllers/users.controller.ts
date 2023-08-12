@@ -3,7 +3,7 @@ import type { TagObject } from 'openapi3-ts/oas31'
 import { z } from 'zod'
 import { validateRequest } from 'zod-express-middleware'
 
-import { UserAppSchema, UserRepository } from '@/models/user.model'
+import { UserAppToDbSchema, UserRepository } from '@/models/user.model'
 import { registry } from '@/spec/registry'
 import { makeHandlers } from '@/utils/express-types'
 
@@ -20,7 +20,7 @@ export class UsersController {
 
   static getUsers = {
     params: undefined,
-    response: z.array(UserAppSchema),
+    response: z.array(UserAppToDbSchema),
     handler() {
       const handlers = makeHandlers(null, async (req, res) => {
         const users = await UserRepository.getAll()
@@ -38,7 +38,7 @@ export class UsersController {
       .openapi({
         example: { user_id: 'user_5385a833-2935-4bca-bd59-379366a027ea' },
       }),
-    response: UserAppSchema,
+    response: UserAppToDbSchema,
     handler() {
       const handlers = makeHandlers(
         validateRequest({
@@ -55,7 +55,7 @@ export class UsersController {
 
   static createUser = {
     body: z.object({ email: z.string().email() }),
-    response: UserAppSchema,
+    response: UserAppToDbSchema,
     handler() {
       const handlers = makeHandlers(
         validateRequest({
