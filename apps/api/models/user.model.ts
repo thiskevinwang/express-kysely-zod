@@ -12,6 +12,7 @@ const RX = /^user_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
   id: string
   email: string
   createdAt: Date
+  updatedAt: Date
 }
 
 // See "ZodType with ZodEffects" to get a sense of the verbose schemas in this file.
@@ -23,11 +24,13 @@ const UserDbToAppSchema: z.ZodType<UserAppSchema, z.ZodTypeDef, UserDBSchema> =
       id: z.string().regex(RX),
       email: z.string().email(),
       created_at: z.date(),
+      updated_at: z.date(),
     })
     /*to app*/ .transform((user) => ({
       id: user.id,
       email: user.email,
       createdAt: user.created_at,
+      updatedAt: user.updated_at,
     }))
 type UserDbToAppSchema = z.infer<typeof UserDbToAppSchema>
 
@@ -41,11 +44,13 @@ export const UserAppToDbSchema: z.ZodType<
     id: z.string().regex(RX),
     email: z.string().email(),
     createdAt: z.date(),
+    updatedAt: z.date(),
   })
   /*to db*/ .transform((user) => ({
     id: user.id,
     email: user.email,
     created_at: user.createdAt,
+    updated_at: user.updatedAt,
   }))
 type UserAppToDbSchema = z.infer<typeof UserAppToDbSchema>
 
@@ -55,11 +60,13 @@ class User implements UserAppSchema {
   id: string
   email: string
   createdAt: Date
+  updatedAt: Date
 
-  constructor({ id, email, createdAt }: UserAppSchema) {
+  constructor({ id, email, createdAt, updatedAt }: UserAppSchema) {
     this.id = id
     this.email = email
     this.createdAt = createdAt
+    this.updatedAt = updatedAt
   }
 
   // zod parsing and transformation happens within these methods
@@ -78,6 +85,7 @@ class User implements UserAppSchema {
       id: this.id,
       email: this.email,
       createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
     })
 
     // Should not realistically happen
@@ -99,7 +107,7 @@ export class UserRepository {
     const data = await db
       .selectFrom('users')
       .where('id', '=', id)
-      .select(['id', 'email', 'created_at'])
+      .select(['id', 'email', 'created_at', 'updated_at'])
       .executeTakeFirstOrThrow()
 
     return User.fromDb(data)
@@ -108,20 +116,22 @@ export class UserRepository {
   static async getAll() {
     const data = await db
       .selectFrom('users')
-      .select(['id', 'email', 'created_at'])
+      .select(['id', 'email', 'created_at', 'updated_at'])
       .orderBy('created_at', 'desc')
       .execute()
 
     return data.map(User.fromDb)
   }
 
-  static async createOne({ email }: Omit<UserAppSchema, 'id' | 'createdAt'>) {
+  static async createOne({
+    email,
+  }: Omit<UserAppSchema, 'id' | 'createdAt' | 'updatedAt'>) {
     const data = await db
       .insertInto('users')
       .values({
         email: email,
       })
-      .returning(['id', 'email', 'created_at'])
+      .returning(['id', 'email', 'created_at', 'updated_at'])
       .executeTakeFirstOrThrow()
 
     return User.fromDb(data)
@@ -130,9 +140,12 @@ export class UserRepository {
   static async updateOne(data: User) {
     const res = await db
       .updateTable('users')
-      .set({ created_at: data.createdAt, email: data.email })
+      .set({
+        created_at: data.createdAt,
+        email: data.email,
+      })
       .where('id', '=', data.id)
-      .returning(['id', 'email', 'created_at'])
+      .returning(['id', 'email', 'created_at', 'updated_at'])
       .executeTakeFirstOrThrow()
 
     return User.fromDb(res)

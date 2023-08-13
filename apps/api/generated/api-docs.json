@@ -55,9 +55,10 @@
                       "pattern": "^user_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
                     },
                     "email": { "type": "string", "format": "email" },
-                    "createdAt": { "type": "string" }
+                    "createdAt": { "type": "string" },
+                    "updatedAt": { "type": "string" }
                   },
-                  "required": ["id", "email", "createdAt"]
+                  "required": ["id", "email", "createdAt", "updatedAt"]
                 }
               }
             }
@@ -96,9 +97,10 @@
                       "pattern": "^user_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
                     },
                     "email": { "type": "string", "format": "email" },
-                    "createdAt": { "type": "string" }
+                    "createdAt": { "type": "string" },
+                    "updatedAt": { "type": "string" }
                   },
-                  "required": ["id", "email", "createdAt"]
+                  "required": ["id", "email", "createdAt", "updatedAt"]
                 }
               }
             }
@@ -133,9 +135,10 @@
                       "pattern": "^user_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
                     },
                     "email": { "type": "string", "format": "email" },
-                    "createdAt": { "type": "string" }
+                    "createdAt": { "type": "string" },
+                    "updatedAt": { "type": "string" }
                   },
-                  "required": ["id", "email", "createdAt"]
+                  "required": ["id", "email", "createdAt", "updatedAt"]
                 }
               }
             }
