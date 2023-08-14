@@ -22,6 +22,7 @@ COPY generated/ ./generated/
 COPY routes/ ./routes/
 COPY spec/ ./spec/
 COPY utils/ ./utils/
+COPY app.ts ./app.ts
 COPY server.ts ./server.ts
 COPY tsconfig.json ./tsconfig.json
 
