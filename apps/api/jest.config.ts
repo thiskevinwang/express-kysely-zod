@@ -7,5 +7,6 @@ export default async (): Promise<Config> => {
     moduleNameMapper: {
       '^@/(.*)$': '<rootDir>/$1',
     },
+    reporters: ['default', 'jest-junit'],
   }
 }

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "plop": "plop",
-    "gen:db": "npm run gen:db -w 'apps/api' 'cmd/shared'"
+    "gen:db": "npm run gen:db -w 'apps/api' 'cmd/shared'",
+    "test": "npm run -w apps/api test -- --detectOpenHandles --coverage"
   },
   "keywords": [],
   "author": "",

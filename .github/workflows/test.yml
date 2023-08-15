@@ -43,3 +43,9 @@ jobs:
           POSTGRES_PORT: 5432
           POSTGRES_DB: postgres
           POSTGRES_USER: postgres
+      - uses: actions/upload-artifact@v3 # upload test results
+        # run this step even if previous step failed
+        if: success() || failure()
+        with:
+          name: test-results
+          path: apps/api/junit.xml
