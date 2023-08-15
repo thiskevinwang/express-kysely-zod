@@ -8,5 +8,6 @@ export default async (): Promise<Config> => {
       '^@/(.*)$': '<rootDir>/$1',
     },
     reporters: ['default', 'jest-junit'],
+    prettierPath: null, // Disable prettier; Prettier 3 is not supported
   }
 }
