@@ -1,4 +1,7 @@
 name: 'Test Report'
+# fix https://github.com/dorny/test-reporter/issues/229
+permissions:
+  checks: write
 on:
   workflow_run:
     workflows: ['Test'] # runs after Test workflow
