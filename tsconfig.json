@@ -1,7 +1,8 @@
 {
   "ts-node": {
     // Do not forget to `npm i -D tsconfig-paths`
-    "require": ["tsconfig-paths/register"] // enables `ts-node` to resolve `@/*` alias paths
+    "require": ["tsconfig-paths/register"], // enables `ts-node` to resolve `@/*` alias paths
+    "files": true // enables `ts-node` to resolve local `.d.ts` files - https://stackoverflow.com/a/68295576
   },
   "compilerOptions": {},
   "exclude": ["node_modules"],
